@@ -1,2 +1,2 @@
-# Super-Enalotto
+# SuperEnalotto
 ciao.
