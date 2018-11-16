@@ -3,25 +3,50 @@ using namespace std;
 int  main ()
 {
     int num;
+    int costo;
+    int jolly;
+    bool superstar;
     do
     {
         cout<<"Quanti numeri si vogliono giocare? Inserire un numero compreso tra 6 e 12."<<endl;
         cin>>num;
-    }while(num<=6 || num>12);
-    bool superstar;
-    string r1;
-    cout<<"Si vuole giocare la Superstar?";
-    cin>>r1;
-    if(r1=="si"||r1=="Si"||r1=="SI") superstar=true;
-    if(r1=="no"||r1=="No"||r1=="NO") superstar=false;
-    int giocata[num];
-    for(int h=0;h<=num-1;h++)
+    }while(num<6 || num>12);
+    cout<<"Si vuole giocare la superstar?\n\nClicca sul numero 1 se si vuole giocare, 2 se non si vuole."<<endl;
+        switch (jolly)
     {
-        cout<<"Inserire giocata numero "<<h+1<<endl;
-        cin>>giocata[h];
+    case 1:
+        {
+        cin>>jolly;
+        superstar=true;
+        break;
+        }
+
+    case 2:
+        {
+        cin>>jolly;
+        superstar=false;
+        break;
+        }
+
+
     }
-    int combinazioni[]
 
 
-    cout<<"L'importo giocato e' "<<costo<<endl;
+    int giocata[num];
+
+    for(int h=1;h<=num;h++)
+    {
+        do
+        {
+            cout<<"Inserire giocata numero "<<h<<endl;
+        cin>>giocata[h];
+        if(giocata[h]<=0 || giocata[h]>90)cout<<"Il numero da inserire deve essere compreso tra 1 e 90"<<endl;
+        }while (giocata[h]<=0 || giocata[h]>90);
+
+    }
+
+
+
+
+
 }
