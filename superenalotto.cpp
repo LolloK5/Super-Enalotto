@@ -7,13 +7,14 @@ int  main ()
     int combinazioni;
     int num;
     char g;
-    int random[12];
+    int random[6];
     int giocata[12][924];
     int jolly;
     int superstar1;
     int vinto;
     bool controllo1;
     bool controllo2=false;
+    bool controllo3=true;
     bool superstar;
     double importo;
     string modifica;
@@ -61,7 +62,7 @@ int  main ()
     }
 
 
-    cout<<"\nRicordiamo che la giocata vincente avra' una combinazione di numeri\nche vanno dall'1 al 90, e non ci saranno numeri uguali tra loro.\nPer tanto sconsigliamo di inserire numei uguali poichè non saranno mai vincenti."<<endl;
+    cout<<"\nRicordiamo che la giocata vincente avra' una combinazione di numeri\nche vanno dall'1 al 90, e non ci saranno numeri uguali tra loro.\nPer tanto sconsigliamo di inserire numeri uguali poiche' non saranno mai vincenti."<<endl;
 
     for(int h=1;h<=num;h++)
     {
@@ -139,7 +140,8 @@ int  main ()
     }
     cout<<"\n\n";
     for(int k=1;k<=num;k++)
-    {cout<<giocata[k]<<" , ";}
+    {cout<<giocata[k][0]<<" , ";}
+    if(superstar)cout<<" "<<superstar1<<endl;
 
 
 
@@ -172,6 +174,21 @@ int  main ()
 
     for(int i=0;i<6;i++)cout<<random[i]<<" ";
     cout<<endl;
+    cout<<"\nEcco il numero superstar!\n"<<endl;
+
+    jolly=0;
+    do{
+    srand(time(NULL));
+    jolly=(rand()%90)+1;
+
+
+
+            for(int y=0;y<6;y++)
+        {
+            if(jolly=random[y])controllo3=false;
+        }
+        }while(false);
+cout<<"\n"<<jolly<<endl;
 
     //NEW
 
@@ -191,7 +208,7 @@ if(num>6)
          {
              for(int i=0;i<num;i++)
                 {
-                    if(giocata[h][w]==random[i]){cout<<"Si numero "<<h+1<<endl;vinto++;}
+                    if(giocata[h][w]==random[i]){vinto++;}
                     if(controllo2)i=combinazioni;
 
                 }
@@ -205,7 +222,7 @@ if(num=6)
          {
              for(int i=0;i<num;i++)
                 {
-                    if(giocata[h][0]==random[i]){cout<<"Si numero "<<h+1<<endl;vinto++;}
+                    if(giocata[h][0]==random[i])vinto++;
                     if(controllo2)i=combinazioni;
 }
 
@@ -216,5 +233,3 @@ if(num=6)
 
     }
 }
-
-
