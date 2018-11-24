@@ -8,7 +8,8 @@ int  main ()
     int num;
     char g;
     int random[6];
-    int giocata[12][924];
+    int giocata[12];
+    int comb[12][924];
     int jolly;
     int superstar1;
     int vinto;
@@ -64,14 +65,14 @@ int  main ()
 
     cout<<"\nRicordiamo che la giocata vincente avra' una combinazione di numeri\nche vanno dall'1 al 90, e non ci saranno numeri uguali tra loro.\nPer tanto sconsigliamo di inserire numeri uguali poiche' non saranno mai vincenti."<<endl;
 
-    for(int h=1;h<=num;h++)
+    for(int h=0;h<num;h++)
     {
         do
         {
-            cout<<"Inserire giocata numero "<<h<<endl;
-        cin>>giocata[h][0];
-        if(giocata[h][0]<=0 || giocata[h][0]>90)cout<<"Il numero da inserire deve essere compreso tra 1 e 90"<<endl;
-        }while (giocata[h][0]<=0 || giocata[h][0]>90);
+            cout<<"Inserire giocata numero "<<h+1<<endl;
+        cin>>giocata[h];
+        if(giocata[h]<=0 || giocata[h]>90)cout<<"Il numero da inserire deve essere compreso tra 1 e 90"<<endl;
+        }while (giocata[h]<=0 || giocata[h]>90);
 
     }
     if(superstar)
@@ -139,8 +140,8 @@ int  main ()
         }
     }
     cout<<"\n\n";
-    for(int k=1;k<=num;k++)
-    {cout<<giocata[k][0]<<" , ";}
+    for(int k=0;k<num;k++)
+    {cout<<giocata[k]<<" , ";}
     if(superstar)cout<<" "<<superstar1<<endl;
 
 
@@ -180,9 +181,6 @@ int  main ()
     do{
     srand(time(NULL));
     jolly=(rand()%90)+1;
-
-
-
             for(int y=0;y<6;y++)
         {
             if(jolly=random[y])controllo3=false;
@@ -193,8 +191,32 @@ cout<<"\n"<<jolly<<endl;
     //NEW
 
 
+if(num==7)
+    {
+        for(int w=0;w<7;w++)
+    {
+        for(int i=0;i<7;i++){
+            comb[i][w]=giocata[i];
+        }
+        //comb= numero di combinazioni
+    }
+    int i=0;int w=0;
+    do
+    {
+        //for(int w=0;w<7;w++)
 
+            comb[w][i]=giocata[6];
+        i++;
+        w++;
+    }while(i<7);
 
+    for(int m=0; m<7;m++)
+    {
+        for(int y=0;y<6;y++)
+            cout<<comb[y][m]<<" , ";
+        cout<<endl;
+    }
+    }
 
 
 
@@ -208,7 +230,7 @@ if(num>6)
          {
              for(int i=0;i<num;i++)
                 {
-                    if(giocata[h][w]==random[i]){vinto++;}
+                    if(comb[h][w]==random[i]){vinto++;}
                     if(controllo2)i=combinazioni;
 
                 }
@@ -216,13 +238,13 @@ if(num>6)
          }
      }
 }
-if(num=6)
+if(num==6)
     {
     for(int h=0;h<num;h++)
          {
              for(int i=0;i<num;i++)
                 {
-                    if(giocata[h][0]==random[i])vinto++;
+                    if(comb[h][0]==random[i])vinto++;
                     if(controllo2)i=combinazioni;
 }
 
