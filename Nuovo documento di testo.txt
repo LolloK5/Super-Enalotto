@@ -16,9 +16,11 @@ int main()
 	double vinto;
 	int soldi;
 	bool ripetizione;
+	bool ripetizioneS;
 	bool controllo1;
 	bool controllo2 = false;
 	bool controllo3 = true;
+	bool controlloS;
 	bool superstar;
 	bool superstar3;
 	double importo,vinto2,vinto3,vinto4,vinto5,vinto6,vintoTot;
@@ -31,7 +33,7 @@ int jackpot=100000;
 int vet[6];
 	
 
-	
+	do{
 		do
 
 		{
@@ -72,10 +74,14 @@ int vet[6];
 		cout << "\nRicordiamo che la giocata vincente avra' una combinazione di numeri\ncompresa tra l'1 e il 90. Non e' consentito inserire numeri uguali tra loro."
 		        
 			 << endl;
-do{
+			 
+			 
+int cont=0;
     
 		for (int h = 0; h < num; h++)
-		{do{
+		{
+		    do
+		    {
 			do
 			{
 		    
@@ -83,22 +89,26 @@ do{
 				cin >> giocata[h];
 				if (giocata[h] <= 0 || giocata[h] > 90)
 					cout << "\nErrore!\nIl numero da inserire deve essere compreso tra 1 e 90" << endl;
+			    
+			} while (giocata[h] <= 0 || giocata[h] > 90);
 					  ripetizione=false;
+  jolly=0;
   
+  cont++;
  
-  
-  	for(int j=0;j<num;j++){
-  		
-  	if (giocata[h]==giocata[j] && h!=j && h!=0 && j!=0)ripetizione=true;
-  		
-  	}
+ 
+  	for(int j=0;j<cont;j++)
+  	if(cont>1)
+  	if (giocata[h]==giocata[j] && h!=j  )ripetizione=true;
+	
+  	
   
 if(ripetizione)
   	cout<<"\nErrore sono stati inseriti dei numeri uguali.\nReinserirli nuovamente.\n"<<endl;
 
 	}while(ripetizione);
-			} while (giocata[h] <= 0 || giocata[h] > 90);
-		}
+			
+		}		
 
 			for (int i = 0; i < num-1; i++)
 		{
@@ -118,8 +128,23 @@ if(ripetizione)
 			
 			if (superstar)
 			{
+			    do
+			    {
+			        do{
+			            controlloS=true;
+			        ripetizioneS=false;
 				cout << "Prego inserire la giocata Superstar." << endl;
 				cin >> superstar1;
+				for(int a=0;a<num;a++)
+				if(giocata[a]==superstar1){ripetizioneS=true;
+				cout<<"Errore la superstar e' uguale ad un numero inserito!"<<endl;}
+				if(superstar1 <= 0 || superstar1 > 90)
+				{
+				    controlloS=false;
+				    cout<<"Errore la superstar deve essere un numero compreso tra 1 e 90"<<endl;
+				}
+				}while(ripetizioneS);
+			    }while(!controlloS);
 			}
 
 			switch (num)
@@ -271,7 +296,7 @@ if(ripetizione)
 		}
 		//NEW
 		if(superstar1==jolly)superstar3=true;
-    
+    cout<<"\n";
 kk=num-5;
     
  int o[6];
@@ -313,7 +338,7 @@ kk=num-5;
 							w[4]=giocata[y];
 							w[5]=giocata[u];
        calc++;
-       quota=0;                     
+                         
 		cout<<w[0]<<","<<w[1] <<","<<w[2]<<","<<w[3]<<","<<w[4]<<","<<w[5]<<" combinazione ["<<calc<<"]"<<endl;
                 contatoreGen=0;
                   for(int a =0;a<c;a++){
@@ -326,38 +351,27 @@ kk=num-5;
                             case 2:
                                 {
                                 contatore2++;
-                                cout<<contatore2<<endl;
-                                quota=2;
                                     break;
                             }
                           case 3:
                                 {
-                              
                                 contatore3++;
-                                    quota=3;
                                     break;
                             }
                             case 4:
                                 {
-                                
-                                
                                 contatore4++;
-                                    quota=4;
+                                    
                                     break;
                             }
                            case 5:
                                 {
-                                
-                                
-                               
                                 contatore5++;
-                                    quota=5;
                                     break;
                             }
                             case 6:
                                 {
                                 contatore6++;
-                                    quota=6;
                                     break;
                             } 
                         }  
@@ -371,59 +385,29 @@ kk=num-5;
 	}
     
     
-    cout<<"Ecco quante persone hanno vinto la quota 2 :"<<vq2<<endl;
+   
     
-    cout<<"Ecco quante persone hanno vinto la quota 3 :"<<vq3<<endl;
-    
-  
-    
-    switch (quota)
-    {
-    case 2:{
-        vinto2=((((jackpot/100)*40)/vq2)*contatore2);
-    break;
-    }
-        case 3:
-        {
-    vinto2=((((jackpot/100)*40)/vq2)*contatore2);
-        vinto3=((((jackpot/100)*12.8)/vq3)*contatore3);
-    break;
-}
-        case 4:
-        {
-    vinto2=(((jackpot/100)*40)/vq2)*contatore2;
-        vinto3=(((jackpot/100)*12.8)/vq3)*contatore3;
-        vinto4=(((jackpot/100)*4.20)/vq4)*contatore4;
-    break;
-}
-        case 5:
-        {
-    vinto2=(((jackpot/100)*40)/vq2)*contatore2;
-        vinto3=(((jackpot/100)*12.8)/vq3)*contatore3;
-        vinto4=(((jackpot/100)*4.20)/vq4)*contatore4;
-           vinto5=(((jackpot/100)*4.20)/vq5)*contatore5;
-    break;
-}
-         case 6:
-        {
+
     vinto2=(((jackpot/100)*40)/vq2)*contatore2;
         vinto3=(((jackpot/100)*12.8)/vq3)*contatore3;
         vinto4=(((jackpot/100)*4.20)/vq4)*contatore4;
            vinto5=(((jackpot/100)*4.20)/vq5)*contatore5;
             vinto6=(((jackpot/100)*17.40)/vq6)*contatore6;
-    break;
-}
-}
-      cout<<"c2 "<<contatore2<<endl;
-    cout<<"c3 "<<contatore3<<endl;
-    cout<<"c4 "<<contatore4<<endl;
-    cout<<"c5 "<<contatore5<<endl;
-    cout<<"c6 "<<contatore6<<endl;
+            
+            vintoTot=vinto2+vinto3+vinto4+vinto5+vinto6;
+
+ if(vinto2!=0)cout<<"Ecco quante persone hanno vinto la quota 2 :"<<vq2<<endl;
+  if(vinto3!=0)  cout<<"Ecco quante persone hanno vinto la quota 3 :"<<vq3<<endl;
+    if(vinto4!=0)cout<<"Ecco quante persone hanno vinto la quota 4 :"<<vq4<<endl;
+    if(vinto5!=0)cout<<"Ecco quante persone hanno vinto la quota 5 :"<<vq5<<endl;
+ if(vinto6!=0) cout<<"Ecco quante persone hanno vinto la quota 6 :"<<vq6<<endl;
     
     
-    vintoTot=vinto2+vinto3+vinto4+vinto5+vinto6;
-  if(quota>1)cout<<"Hai vinto "<<vintoTot<<endl;
-    if(quota<2)cout<<"Non hai vinto"<<endl;
+    
+  if(vintoTot!=0)cout<<"INCREDIBILE!\nHai vinto "<<vintoTot<<" euro!!!\n   COMPLIMENTI!!!"<<endl;
+    if(vintoTot==0)cout<<"Purtroppo i tuoi numeri non sono vincenti"<<endl;
     
     
+    system("PAUSE");
+    return 0;
 	}
