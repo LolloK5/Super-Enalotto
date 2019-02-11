@@ -1,444 +1,412 @@
 #include <iostream>
-#include <time.h>
-#include <cstdlib>
+#include <stdlib.h>
 using namespace std;
+
 int main()
 {
-	int combinazioni;
-	int num;
-	int min;
-	int temp;
-	int random[6];
-	int giocata[12];
-	int jolly;
-	int superstar1;
-	int quota;
-	double vinto;
-	int soldi;
-	bool ripetizione;
-	bool ripetizioneS;
-	bool controllo1;
-	bool controllo2 = false;
-	bool controllo3 = true;
-	bool controlloS;
-	bool superstar;
-	bool superstar3;
-	double importo, vinto0, vinto1, vinto2, vinto3, vinto4, vinto5, vinto6, vintoTot;
-	int modifica;
-	int w[20];
-	int vq2, vq3, vq4, vq5, vq6;
-	double jackpot = 10000000;
-	int kk = num - 5;
-	int calc = 0;
-	string password;
+	int menu, menu1, menu2, menu3;
+	int num, verifica; //verifica é la variabile per identificare un auto
+	int contatore = 0;
+	int contatore1 = 0;
+	string prenotata;
+	int registrazione, num_reg;
+	int conferma;
+	char nome_completo;
+	bool verifica1;
+	int giornoi, giornof, mesei, mesef, annoi, annof;
+	int pren;
+	int h;
+	struct car
+	{
+		char nome[50];
+		char cliente_nome[50];
+		char cliente_cognome[50];
+		bool presa = false;
+		int n_pren = 0;
+		struct inizio
+		{
+			int giorno;
+			int mese;
+			int anno;
+		} inizio [10];
+		struct fine
+		{
+			int giorno;
+			int mese;
+			int anno;
+		} fine [10];
+
+	} cars[20];
+
+	struct cliente
+	{
+		char nome[50];
+		char cognome[50];
+		char macchina[50];
+		int anno;
+		bool prenotazione = false;
+	} clients[100];
+
+
 
 	do
 	{
-		do
+		cout << "Menu' principale\n\n1. Gestione Macchine\n2. Gestione Clienti\n3. Gestione Prenotazioni\n4. Esci" << endl;
 
-		{
-			cout << "Quanti numeri si vogliono giocare?\nInserire un numero compreso tra 6 e 12.\n"
-				 << endl;
-			cin >> num;
-			if (num < 6 || num > 12)
-				cout << "\nErrore! Si possono inserire solo numeri compresi tra 6 e 12." << endl;
-		} while (num < 6 || num > 12);
+		cin >> menu;
 
-		do
-		{
-			cout << "Si vuole giocare la superstar?\n\n1. SI\n2. NO" << endl;
-
-			cin >> jolly;
-			if (jolly != 1 && jolly != 2)
-				cout << "Errore" << endl;
-
-		} while (jolly != 1 && jolly != 2);
-
-		switch (jolly)
+		switch (menu)
 		{
 		case 1:
 		{
-			cout << "\nSuperstar attivato." << endl;
-			superstar = true;
+		    cout<<"\nGestione Macchine\n\n1. Aggiungi macchina\n2. Visualizza lista\n3. Torna menu' principale"<<endl;
+		    cin>>menu1;
+		    switch(menu1)
+		    {
+
+            case 1:
+                {
+                    cout << "Quante macchine aggiungere?" << endl;
+			cin >> num;
+			for (int a = 0; a < num; a++)
+			{
+				cout << "Inserisci la macchina" << endl;
+				cin >> cars[contatore].nome;
+				contatore++;
+
+			}
 			break;
+                }
+
+            case 2 :
+                {
+                    cout << "\nEcco l'elenco delle auto inserite.\n"
+				 << endl;
+for (int a = 0; a < contatore; a++)
+			{
+				cout << "Numero macchina: " << a << endl;
+
+				cout << cars[a].nome
+					 << endl;
+			if (cars[a].presa == true)
+			{
+				prenotata = "Prenotata";
+				cout << prenotata << endl;
+				for(int pren =0; pren < cars[verifica].n_pren; pren++ ){
+				cout << "Cliente che ha prenotato la macchina: " << cars[a].cliente_nome << " " << cars[a].cliente_cognome << endl
+					 << "Prenotata da " << cars[verifica].inizio[pren].giorno << "/" << cars[verifica].inizio[pren].mese << "/" << cars[verifica].inizio[pren].anno << " a " << cars[verifica].fine[pren].giorno << "/" << cars[verifica].fine[pren].mese << "/" << cars[verifica].fine[pren].anno << endl
+					 << endl;
+				}
+			}
+			if (cars[a].presa == false)
+			{
+				prenotata = "Libera";
+				cout << prenotata << endl << endl;
+			}
+            }
+                break;
+                }
+            case 3:
+                {
+                    break;
+                }
+
+
+		    }
+            break;
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		case 2:
 		{
-			cout << "\nSuperstar non attivato." << endl;
-			superstar = false;
-			break;
-		}
-		}
+                cout<<"\nGestione clienti\n\n1. Aggiungi cliente\n2. Visualizza lista\n3. Torna al menu' principale\n"<<endl;
+	cin>>menu2;
+		    switch(menu2)
+		    {
 
-		cout << "\nRicordiamo che la giocata vincente avra' una combinazione di numeri compresa tra l'1 e il 90.\nNon e' consentito inserire numeri uguali tra loro."
 
-			 << endl;
+            case 1:
+                {
+                    cout << "Inserisca il nome" << endl;
+		cin >> clients[contatore1].nome;
 
-		int cont = 0;
-
-		for (int h = 0; h < num; h++)
-		{
-			do
-			{
-				do
+		cout << "Inserisca il cognome" << endl;
+		cin >> clients[contatore1].cognome;
+		cout << "Inserisca l'anno di nascita" << endl;
+		cin >> clients[contatore1].anno;
+		contatore1++;
+		break;
+                }
+            case 2:
+                {
+                	cout<<"\nElenco clienti:\n"<<endl;
+	for (int a = 0; a < contatore1; a++)
 				{
-					cout << "Inserire giocata numero " << h + 1 << endl;
-					cin >> giocata[h];
-					if (giocata[h] <= 0 || giocata[h] > 90)
-						cout << "\nErrore! Il numero da inserire deve essere compreso tra 1 e 90" << endl;
-
-				} while (giocata[h] <= 0 || giocata[h] > 90);
-				ripetizione = false;
-				jolly = 0;
-
-				cont++;
-
-				for (int j = 0; j < cont; j++)
-					if (cont > 1)
-						if (giocata[h] == giocata[j] && h != j)
-							ripetizione = true;
-
-				if (ripetizione)
-					cout << "\nErrore! Sono stati inseriti dei numeri uguali.\nReinserirli nuovamente.\n"
+					cout << "Numero cliente: " << a << endl
+						 << "Nome: " << clients[a].nome << "\nCognome: " << clients[a].cognome << "\n"
+						 << "Anno di nascita: " << clients[a].anno << endl
 						 << endl;
+				}
 
-			} while (ripetizione);
-		}
+		break;
+                }
+            case 3:
+                {
+                    break;
+                }
 
-		for (int i = 0; i < num - 1; i++)
-		{
-			min = i;
+		    }
 
-			for (int j = i + 1; j < num; j++)
-				if (giocata[j] < giocata[min])
-					min = j;
-
-			temp = giocata[min];
-			giocata[min] = giocata[i];
-			giocata[i] = temp;
+break;
 		}
 
-		if (superstar)
-		{
-			do
-			{
-				do
-				{
-					controlloS = true;
-					ripetizioneS = false;
-					cout << "Prego inserire la giocata Superstar." << endl;
-					cin >> superstar1;
-					for (int a = 0; a < num; a++)
-						if (giocata[a] == superstar1)
-						{
-							ripetizioneS = true;
-							cout << "Errore! La superstar e' uguale ad un numero inserito!" << endl;
-						}
-					if (superstar1 <= 0 || superstar1 > 90)
-					{
-						controlloS = false;
-						cout << "Errore! La superstar deve essere un numero compreso tra 1 e 90" << endl;
-					}
-				} while (ripetizioneS);
-			} while (!controlloS);
-		}
 
-		switch (num)
-		{
-		case 6:
-		{
-			importo = 1.00;
-			combinazioni = 1;
-			if (superstar)
-				importo = 1.50;
-			break;
-		}
-		case 7:
-		{
-			importo = 7.00;
-			combinazioni = 7;
-			if (superstar)
-				importo = 10.50;
-			break;
-		}
-		case 8:
-		{
-			importo = 28.00;
-			combinazioni = 28;
-			if (superstar)
-				importo = 42.00;
-			break;
-		}
-		case 9:
-		{
-			importo = 84.00;
-			combinazioni = 84;
-			if (superstar)
-				importo = 126.00;
-			break;
-		}
-		case 10:
-		{
-			importo = 210.00;
-			combinazioni = 210;
-			if (superstar)
-				importo = 315.00;
-			break;
-		}
-		case 11:
-		{
-			importo = 462.00;
-			combinazioni = 462;
-			if (superstar)
-				importo = 693.00;
-			break;
-		}
-		case 12:
-		{
-			importo = 924.00;
-			combinazioni = 924;
-			if (superstar)
-				importo = 1386.00;
-			break;
-		}
-		}
-		cout << "\n\n";
-		for (int k = 0; k < num; k++)
-		{
-			cout << giocata[k] << " ";
-		}
-		if (superstar)
-			cout << "  SUPERSTAR: " << superstar1 << endl;
 
-		do
-		{
-			cout << "\nL'importo giocato e' di " << importo << " Euro.\nVuole proseguire?\n1. SI\n2. NO (ritorno ad inizio programma)" << endl;
-			cin >> modifica;
-			if (modifica == 2)
-			{
-				controllo1 = false;
-				cout << "\nSta per essere reindirizzato ad inizio programma..." << endl;
-			}
-			if (modifica == 1)
-				controllo1 = true;
-		} while (modifica != 1 && modifica != 2);
-	} while (!controllo1);
 
-	cout << "password" << endl;
-	cin >> password;
 
-	cout << "\n\nEcco l'elenco dei numeri usciti!\n\n";
 
-	//Giocate casuali
 
-	if (password == "filippo01")
+
+
+
+
+
+
+
+
+
+	case 3:
 	{
-		for (int a = 0; a < 6; a++)
-			cin >> random[a];
-	}
-	if (password != "filippo01")
-	{
-		srand(time(NULL));
+		cout<<"\nGestione prenotazione\n\n1. Aggiungi prenotazione\n2. Elimina prenotazione\n3. Modifica prenotazione\n4. Visualizza lista prenotazioni\n5. Torna al menu' principale"<<endl;
 
-		for (int i = 0; i < 6; i++)
+
+			cin>>menu3;
+	        switch(menu3)
+	        {
+	        	case 1:
+    {
+	        		cout<<"\nAggiungi prenotazione:\n"<<endl;
+
+	        		do
+                    {
+                    cout<<"Inserire giorno inizio prenotazione...\n"<<endl;
+                    cin>>giornoi;
+                    if(giornoi<=0 || giornoi>31)cout<<"Il giorno deve essere compreso tra 1 e 31"<<endl;
+                    }while(giornoi<=0 || giornoi>31);
+                    do
+                    {
+                    cout<<"Inserire mese inizio prenotazione...\n"<<endl;
+                    cin>>mesei;
+                    if(mesei<=0 || mesei>12)cout<<"Il mese deve essere compreso tra 1 e 12"<<endl;
+                    }while(mesei<=0 || mesei>31);
+                    do
+                    {
+                    cout<<"Inserire anno inizio prenotazione...\n"<<endl;
+                    cin>>annoi;
+                    if(annoi<2019)cout<<"L'anno non puo' essere minore di 2019"<<endl;
+                    }while(annoi<2019);
+
+	        		do
+                    {
+                    cout<<"Inserire giorno fine prenotazione...\n"<<endl;
+                    cin>>giornof;
+                    if(giornof<=0 || giornof>31)cout<<"Il giorno deve essere compreso tra 1 e 31"<<endl;
+                    }while(giornof<=0 || giornof>31);
+                    do
+                    {
+                    cout<<"Inserire mese fine prenotazione...\n"<<endl;
+                    cin>>mesef;
+                    if(mesef<=0 || mesef>12)cout<<"Il mese deve essere compreso tra 1 e 12"<<endl;
+
+                    }while(mesef<=0 || mesef>31  );
+                    do
+                    {
+                    cout<<"Inserire anno fine prenotazione...\n"<<endl;
+                    cin>>annof;
+                    if(annof<2019)cout<<"L'anno non puo' essere minore di 2019"<<endl;
+                    if(annof<annoi){cout<<"L'anno di fine prenotazione non puo' essere minore di quello di inizio"<<endl;
+                    cout<<"Inserisci di nuovo anno fine prenotazione"<<endl;
+                    cin>>annof;}
+                    }while(annof<2019 || annoi<annof);
+
+                    do
+                    {
+                         if(annoi==annof && mesef<mesei){cout<<"Il mese di fine prenotazione non puo' essere minore di quello di inizio"<<endl;
+
+                         do
+                         {
+                             cout<<"Inserisci nuovamente data fine prenotazione"<<endl;
+                            cin>>giornof>>mesef>>annof;
+                         }while(mesef<=0 || mesef>31  || giornof<=0 || giornof>31 || annof<2019);
+                         }
+                    }while(annoi==annof && mesef<mesei);
+
+                   do
+                    {
+                         if(annoi==annof && mesef==mesei && giornof<giornoi){cout<<"Il giorno di fine prenotazione non puo' essere minore di quello di inizio"<<endl;
+                         do
+                         {
+                             cout<<"Inserisci nuovamente data fine prenotazione"<<endl;
+                            cin>>giornof>>mesef>>annof;
+                         }while(mesef<=0 || mesef>31  || giornof<=0 || giornof>31 || annof<2019);}
+                    }while(annoi==annof && mesef==mesei && giornof<giornoi);
+
+                    cout<<"Data inizio: "<<giornoi<<"/"<<mesei<<"/"<<endl<<"Data fine: "<<giornof<<"/"<<mesef<<"/"<<annof<<endl;
+
+	        		cout << "\nEcco l'elenco delle auto presenti nel sistema che non sono prenotate.\n" 	 << endl;
+	        		verifica1=false;
+            for(int a=0; a < contatore; a++)
+                    {
+                        for(pren =0; pren < cars[a].n_pren +1 ; pren++)
+                        {
+                                  		if(annoi>cars[a].fine[pren].anno || annof<cars[a].inizio[pren].anno || annof == cars[a].inizio[pren].anno && mesef<cars[a].inizio[pren].mese ||annoi == cars[a].fine[pren].anno &&
+                              mesei>cars[a].fine[pren].mese || annof==cars[a].inizio[pren].anno && mesef == cars[a].inizio[pren].mese
+               && giornof < cars[a].inizio[pren].giorno|| annoi == cars[a].fine[pren].anno && mesei == cars[a].fine[pren].mese && giornoi>cars[a].fine[pren].giorno)
+            verifica1 = true;
+
+  }
+	        		if(cars[a].presa==false || cars[a].presa==true && verifica1== true)
+                    {
+                        cout << "Numero macchina " << a << endl;
+                        cout << cars[a].nome<< endl<<endl;
+                    }
+
+                    }
+                    cout << "Inserisca il numero dell'auto che vuole noleggiare" << endl;
+		cin >> verifica;
+
+		cout << cars[verifica].nome << endl;
+
+		cout << "Vuole noleggiare quest'auto? \nDigitare 1 se vuole proseguie, 2 se vuole tornare al menu' princiale." << endl;
+		cin >> conferma;
+
+		if (conferma == 1)
 		{
-			random[i] = (rand() % 90) + 1;
-			for (int j = 0; j < i; j++)
+		    cars[verifica].presa = true;
+		    pren=cars[verifica].n_pren;
+
+			cars[verifica].inizio[pren].giorno = giornoi;
+			cars[verifica].inizio[pren].mese = mesei;
+			cars[verifica].inizio[pren].anno = annoi;
+
+			cars[verifica].fine[pren].giorno = giornof;
+			cars[verifica].fine[pren].mese = mesef;
+			cars[verifica].fine[pren].anno = annof;
+
+
+
+			cout << "E' gia' registrato come nostro cliente?\nDigiti 1 se e' nostro cliente, 2 se non lo e',\nverra' reindirizzato nella pagina di registrazione\n"
+				 << endl;
+
+			cin >> registrazione;
+
+			if (registrazione == 1)
+
 			{
-				if (random[i] == random[j])
+				for (int a = 0; a < contatore1; a++)
 				{
-					i--;
-					break;
+					cout << "Numero cliente: " << a << endl
+						 << "Nome: " << clients[a].nome << "\nCognome: " << clients[a].cognome << "\n"
+						 << "Anno di nascita: " << clients[a].anno << endl
+						 << endl;
+				}
+				cout << "Inserisca il numero corrispondente al suo nome: " << endl;
+
+				cin >> num_reg;
+
+				for (int a = 0; a < 50; a++)
+				{
+					cars[verifica].cliente_nome[a] = clients[num_reg].nome[a];
+					cars[verifica].cliente_cognome[a] = clients[num_reg].cognome[a];
 				}
 			}
-		}
-	}
 
-	//vincitori casuali
-	vq2 = (rand() % 10000);
-	vq3 = (rand() % 500);
-	vq4 = (rand() % 100);
-	vq5 = (rand() % 50);
-	vq6 = (rand() % 5);
+			if (registrazione == 2)
 
-	//ordinamento random
-
-	for (int i = 0; i < 5; i++)
-	{
-		min = i;
-
-		for (int j = i + 1; j < 6; j++)
-			if (random[j] < random[min])
-				min = j;
-
-		temp = random[min];
-		random[min] = random[i];
-		random[i] = temp;
-	}
-	for (int i = 0; i < 6; i++)
-		cout << random[i] << " ";
-	cout << endl;
-
-	if (superstar)
-	{
-		cout << "\nEcco il numero superstar!\n"
-			 << endl;
-
-		//jolly casuale
-
-		jolly = 0;
-		// do{
-		//	for(int y=0;y<6;y++)
-		//       { controllo3=true;
-
-		jolly = (rand() % 90) + 1;
-		//if(jolly==random[y])controllo3=false;
-		//}
-		//  }while(!controllo3);
-		cout << "\n"
-			 << jolly << "\n"
-			 << endl;
-	}
-	//NEW
-	if (superstar1 == jolly)
-		superstar3 = true;
-	cout << "\n";
-	kk = num - 5;
-
-	int o[6];
-
-	int c = 0;
-
-	int contatoreGen = 0;
-	int contatore1 = 0;
-	int contatore2 = 0;
-	int contatore3 = 0;
-	int contatore4 = 0;
-	int contatore5 = 0;
-	int contatore6 = 0;
-
-	for (int a = 0; a < 6; a++)
-		for (int b = 0; b < num; b++)
-			if (random[a] == giocata[b])
 			{
-				o[c] = random[a];
-				c++;
-			}
+				clients[contatore1].prenotazione = true;
 
-	for (int i = 0; i < kk; i++)
-	{
-		for (int j = i + 1; j < kk + 1; j++)
-		{
-			for (int k = j + 1; k < kk + 2; k++)
-			{
-				for (int t = k + 1; t < kk + 3; t++)
+				cout << "Inserisca il nome" << endl;
+				cin >> clients[contatore1].nome;
+
+				cout << "Inserisca il conome" << endl;
+				cin >> clients[contatore1].cognome;
+				cout << "Inserisca l'anno di nascita" << endl;
+				cin >> clients[contatore1].anno;
+
+				for (int a = 0; a < 50; a++)
 				{
-					for (int y = t + 1; y < kk + 4; y++)
-					{
-						for (int u = y + 1; u < kk + 5; u++)
-						{
-							w[0] = giocata[i];
-							w[1] = giocata[j];
-							w[2] = giocata[k];
-							w[3] = giocata[t];
-							w[4] = giocata[y];
-							w[5] = giocata[u];
-							calc++;
+					cars[verifica].cliente_nome[a] = clients[contatore1].nome[a];
 
-							cout << w[0] << "," << w[1] << "," << w[2] << "," << w[3] << "," << w[4] << "," << w[5] << " combinazione [" << calc << "]" << endl;
-							contatoreGen = 0;
-							for (int a = 0; a < c; a++)
-							{
-								for (int b = 0; b < 6; b++)
-									if (o[a] == w[b])
-										contatoreGen++;
-							}
-							switch (contatoreGen)
-							{
-							case 1:
-							{
-								contatore1++;
-								break;
-							}
-							case 2:
-							{
-								contatore2++;
-								break;
-							}
-							case 3:
-							{
-								contatore3++;
-								break;
-							}
-							case 4:
-							{
-								contatore4++;
-
-								break;
-							}
-							case 5:
-							{
-								contatore5++;
-								break;
-							}
-							case 6:
-							{
-								contatore6++;
-								break;
-							}
-							}
-						}
-					}
+					cars[verifica].cliente_cognome[a] = clients[contatore1].cognome[a];
 				}
+				contatore1++;
 			}
-		}
+			cars[verifica].n_pren ++;
+        }
+
+    }
+    break;
+ } break;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	case 4:
+	{
+		cout << "Inserisca il nome" << endl;
+		cin >> clients[contatore1].nome;
+
+		cout << "Inserisca il cognome" << endl;
+		cin >> clients[contatore1].cognome;
+		cout << "Inserisca l'anno di nascita" << endl;
+		cin >> clients[contatore1].anno;
+		contatore1++;
+		break;
 	}
-	if (superstar3)
-		cout << "\nHai indovinato la superstar!" << endl;
 
-	if (superstar3 && c == 0)
-		vinto0 = 5;
-	if (superstar3 && c == 1)
-		vinto1 = 10;
+	case 5:
 
-	vinto2 = (((jackpot / 100) * 40) / vq2) * contatore2;
-	if (superstar3 && c == 2)
-		vinto2 = vinto2 + 100;
-	vinto3 = (((jackpot / 100) * 12.8) / vq3) * contatore3;
-	if (superstar3 && c == 3)
-		vinto3 = vinto3 * 100;
-	vinto4 = (((jackpot / 100) * 4.20) / vq4) * contatore4;
-	if (superstar3 && c == 4)
-		vinto4 = vinto4 * 100;
-	vinto5 = (((jackpot / 100) * 4.20) / vq5) * contatore5;
-	if (superstar3 && c == 5)
-		vinto5 = vinto5 * 25;
-	vinto6 = (((jackpot / 100) * 17.40) / vq6) * contatore6;
-	if (superstar3 && c == 6)
-		vinto6 = vinto6 + 200000;
+	{
+		for (int a = 0; a < contatore1; a++)
+		{
+			cout << "Elenco clienti registrati: " << endl;
+			cout << "Numero cliente: " << a << endl
+				 << "Nome: " << clients[a].nome << "\nCognome: " << clients[a].cognome << "\n"
+				 << "Anno di nascita: " << clients[a].anno << endl
+				 << endl;
+		}
+		break;
+	}
+	case 6:
+		break;
+	}
+}
+while (menu != 6)
+	;
 
-	vintoTot = vinto0 + vinto1 + vinto2 + vinto3 + vinto4 + vinto5 + vinto6;
 
-	if (vinto2 != 0)
-		cout << "Ecco quante persone hanno vinto la quota 2 :" << vq2 << endl;
-	if (vinto3 != 0)
-		cout << "Ecco quante persone hanno vinto la quota 3 :" << vq3 << endl;
-	if (vinto4 != 0)
-		cout << "Ecco quante persone hanno vinto la quota 4 :" << vq4 << endl;
-	if (vinto5 != 0)
-		cout << "Ecco quante persone hanno vinto la quota 5 :" << vq5 << endl;
-	if (vinto6 != 0)
-		cout << "Ecco quante persone hanno vinto la quota 6 :" << vq6 << endl;
-
-	if (vintoTot != 0)
-		cout << "COMPLIMENTI!\nHai vinto " << vintoTot << " euro!!!" << endl;
-	if (vintoTot == 0)
-		cout << "Purtroppo i tuoi numeri non sono vincenti" << endl;
-	if (superstar && !superstar3)
-		cout << "\nLa superstar non e' corretta\n"
-			 << endl;
-
-	system("PAUSE");
-	return 0;
 }
